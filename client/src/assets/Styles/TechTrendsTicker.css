@@ -1,0 +1,34 @@
+.ticker-container {
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  border-top: 2px solid #0dcaf0;
+  border-bottom: 2px solid #0dcaf0;
+  background-color: #f8f9fa;
+}
+
+.ticker-track {
+  display: inline-block;
+  animation: scroll 15s linear infinite;
+}
+
+.ticker-content {
+  display: inline-flex;
+  gap: 3rem;
+}
+
+.ticker-item {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #0d6efd;
+}
+
+/* Keyframes */
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

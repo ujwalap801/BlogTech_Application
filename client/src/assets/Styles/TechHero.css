@@ -1,0 +1,44 @@
+.animated-text-wrapper {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  height: 1.5em;
+  width: 200px;
+  margin-left: 10px;
+  position: relative;
+}
+
+.animated-text::after {
+  content: "Java Full Stack";
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation: rotateWords 10s infinite;
+  white-space: nowrap;
+  font-weight: bold;
+  color: #0dcaf0;
+}
+
+@keyframes rotateWords {
+  0% { content: "Java Full Stack"; }
+  20% { content: "Web Development"; }
+  40% { content: "AI/ML"; }
+  60% { content: "Cloud"; }
+  80% { content: "Cybersecurity"; }
+  100% { content: "Java Full Stack"; }
+}
+
+/* Optional: Responsive font sizing */
+@media (max-width: 576px) {
+  .display-4 {
+    font-size: 2rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  .animated-text-wrapper {
+    width: 160px;
+  }
+}
