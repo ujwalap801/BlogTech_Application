@@ -32,7 +32,7 @@ app.use("/author-api",authorApp);
 
 // Database connection
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT;
 
 async function main() {
     await mongose.connect(process.env.DBURL);
