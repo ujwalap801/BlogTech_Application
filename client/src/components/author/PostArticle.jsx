@@ -62,7 +62,7 @@ const PostArticle = () => {
 
 
     //  MAKE HTTP POST req TO CREATE NEW ARTICLE IN BACKEND
-    let res = await axios.post("http://localhost:3000/author-api/article", articleFormData);
+    let res = await axios.post("https://blogtech-application.onrender.com/author-api/article", articleFormData);
     if (res.status === 201) {
       navigate(`/author-profile/${currentUser.role}/articles`);
       console.log("Redirecting to:", `/author-profile/${currentUser.role}/articles`);

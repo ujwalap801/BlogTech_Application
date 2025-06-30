@@ -47,7 +47,7 @@ const ArticleByID = () => {
     // console.log(articleAfterChanges);
 
     // make http post req
-    let res = await axios.put(`http://localhost:3000/author-api/article/${articleAfterChanges.articleId}`, articleAfterChanges, {
+    let res = await axios.put(`https://blogtech-application.onrender.com/author-api/article/${articleAfterChanges.articleId}`, articleAfterChanges, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -73,7 +73,7 @@ const ArticleByID = () => {
     // console.log(commentObj);
 
     // http put
-    let res = await axios.put(`http://localhost:3000/user-api/comment/${currentArticle.articleId}`, commentObj);
+    let res = await axios.put(`https://blogtech-application.onrender.com/user-api/comment/${currentArticle.articleId}`, commentObj);
     // if(res.data.message === "comment added")
     // {
     //       setCommentStatus(res.data.message);
@@ -104,7 +104,7 @@ const ArticleByID = () => {
     state.isArticleActive = false;
     // GET JWT TOKEN
     const token = await getToken();
-    let res = await axios.put(`http://localhost:3000/author-api/articles/${state.articleId}`, state, {
+    let res = await axios.put(`https://blogtech-application.onrender.com/author-api/articles/${state.articleId}`, state, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -119,7 +119,7 @@ const ArticleByID = () => {
   async function restoreArticle() {
     state.isArticleActive = true;
     const token = await getToken();
-    let res = await axios.put(`http://localhost:3000/author-api/articles/${state.articleId}`, state, {
+    let res = await axios.put(`https://blogtech-application.onrender.com/author-api/articles/${state.articleId}`, state, {
       headers: {
         Authorization: `Bearer ${token}`
       }

@@ -14,7 +14,7 @@ const AdminDashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await api.get('http://localhost:3000/admin-api/dashboard');
+      const response = await api.get('https://blogtech-application.onrender.com/admin-api/dashboard');
       setUsers(response.data.users);
       setLoading(false);
     } catch (error) {
@@ -28,7 +28,7 @@ const AdminDashboard = () => {
     const shouldBlock = !isCurrentlyActive;
 
     try {
-      await api.put('http://localhost:3000/admin-api/block-user', {
+      await api.put('https://blogtech-application.onrender.com/admin-api/block-user', {
         email,
         block: !isCurrentlyActive, // true = block, false = unblock
         message: shouldBlock
