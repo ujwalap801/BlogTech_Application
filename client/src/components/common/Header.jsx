@@ -1,7 +1,7 @@
 
 import { Link, useNavigate } from "react-router-dom"
 import { useContext } from "react";
-import '../../assets/styles/Header.css';
+import '../../assets/Styles/Header.css';
 import { useClerk, useUser } from "@clerk/clerk-react";
 import { UserAuthorContextObj } from "../../contexts/UserAuthorContext";
 import BlogNest from '../../assets/BlogNest.png';
