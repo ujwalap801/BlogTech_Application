@@ -20,7 +20,7 @@ const Articles = () => {
   const getArticles = async () => {
     try {
       const token = await getToken();
-      const res = await axios.get('https://blogtech-application.onrender.com/author-api/articles', {
+      const res = await axios.get('https://blogtech-backend.onrender.com/author-api/articles', {
         headers: {
           Authorization: `Bearer ${token}`
         }

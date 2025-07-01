@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://blogtech-application.onrender.com/admin-api",
+  baseURL: "/admin-api",
   withCredentials: true
 });
 
