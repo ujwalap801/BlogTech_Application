@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
-import '../../assets/styles/AuthorProfile.css';
+// import '../../assets/styles/AuthorProfile.css';
 
-
+import "../../assets/Styles/AuthorProfile.css"
 
 const UserProfile = () => {
 
