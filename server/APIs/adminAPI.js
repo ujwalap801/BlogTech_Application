@@ -21,7 +21,7 @@ adminApp.use(cookieParser());
 const cors = require("cors");
 
 adminApp.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://blogtech-tr0q.onrender.com",
   credentials: true
 }));
 

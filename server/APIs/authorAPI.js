@@ -5,7 +5,7 @@ const expressAsyncHandler = require('express-async-handler')
 const createUserAuthor = require('./CreateUserAuthor.js')
 const cors = require('cors');
 authorApp.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://blogtech-tr0q.onrender.com",
     credentials: true
 }));
 

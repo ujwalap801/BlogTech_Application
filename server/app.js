@@ -9,6 +9,7 @@ require('dotenv').config(); //process.env
 // We store the PORT in .env to allow flexibility across environments, keep our code clean, and follow best practices.
 //  It makes deployment easier and is part of a secure and maintainable configuration strategy.
 
+const frontend_URl='https://blogtech-tr0q.onrender.com'
 
 const { clerkMiddleware } = require("@clerk/express");
 app.use(clerkMiddleware());
@@ -16,7 +17,7 @@ app.use(clerkMiddleware());
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 // app.use(cors());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "https://blogtech-tr0q.onrender.com", credentials: true }));
 
 const userApp= require('./APIs/userAPI');
 const adminApp = require('./APIs/adminAPI.js');
@@ -39,7 +40,7 @@ async function main() {
 }
 
 main()
-    .then(() => app.listen(port, '0.0.0.0', () => {
+    .then(() => app.listen(frontend_URl, '0.0.0.0', () => {
         console.log(`app is listening to ${port}`);
         console.log("Database Connected")
 
