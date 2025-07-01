@@ -40,7 +40,7 @@ async function main() {
 }
 
 main()
-    .then(() => app.listen(frontend_URl, '0.0.0.0', () => {
+    .then(() => app.listen(port, '0.0.0.0', () => {
         console.log(`app is listening to ${port}`);
         console.log("Database Connected")
 
