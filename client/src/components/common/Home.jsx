@@ -34,6 +34,57 @@ const Home = () => {
 
 
 
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
+  //   setError('');
+
+  //   const formData = new FormData(e.target);
+  //   const selectedRole = formData.get("role");
+
+  //   if (!selectedRole) {
+  //     setError("Please select a role.");
+  //     return;
+  //   }
+
+  //   const updatedUser = {
+  //     ...currentUser,
+  //     role: selectedRole,
+  //     isActive: true,
+  //   };
+
+  //   try {
+  //     let res;
+  //     if (selectedRole === "author") {
+  //       res = await axios.post('https://blogtech-backend.onrender.com/author-api/author', updatedUser);
+  //     } else {
+  //       res = await axios.post('https://blogtech-backend.onrender.com/user-api/user', updatedUser);
+  //     }
+
+  //     const { message, payload } = res.data;
+
+  //     if (message === selectedRole) {
+  //       setCurrentUser({ ...updatedUser, ...payload });
+  //       setError("success");
+  //       setTimeout(() => {
+  //         navigate(`/${selectedRole}-profile/${updatedUser.role}`);
+  //       }, 1000);
+  //     }
+  //     else {
+  //       setError(message);
+  //     }
+  //   } catch (err) {
+  //     console.error("Submission error:", err);
+  //     setError("Server error. Please try again.");
+
+
+  //     if (err.response?.status === 403 && err.response.data?.message === "AccountBlocked") {
+  //   setError(err.response.data.blockMessage || "Your account is blocked. Please contact admin.");
+  // } else {
+  //   setError("Server error. Please try again.");
+  // }
+  //   }
+  // }
+
   async function handleSubmit(e) {
     e.preventDefault();
     setError('');
@@ -55,9 +106,9 @@ const Home = () => {
     try {
       let res;
       if (selectedRole === "author") {
-        res = await axios.post('https://blogtech-backend.onrender.com/author-api/author', updatedUser);
+        res = await axios.post('http://localhost:3000/author-api/author', updatedUser);
       } else {
-        res = await axios.post('https://blogtech-backend.onrender.com/user-api/user', updatedUser);
+        res = await axios.post('http://localhost:3000/user-api/user', updatedUser);
       }
 
       const { message, payload } = res.data;
@@ -68,22 +119,35 @@ const Home = () => {
         setTimeout(() => {
           navigate(`/${selectedRole}-profile/${updatedUser.role}`);
         }, 1000);
-      }
-      else {
+      } else {
         setError(message);
       }
+
     } catch (err) {
       console.error("Submission error:", err);
-      setError("Server error. Please try again.");
 
+      if (err.response) {
+        const { status, data } = err.response;
 
-      if (err.response?.status === 403 && err.response.data?.message === "AccountBlocked") {
-    setError(err.response.data.blockMessage || "Your account is blocked. Please contact admin.");
-  } else {
-    setError("Server error. Please try again.");
-  }
+        if (status === 403) {
+          if (data.message === "AccountBlocked") {
+            setError(data.blockMessage || "Your account is blocked. Please contact admin.");
+          } else if (data.message === "RoleMismatch") {
+            setError(data.info || "The selected role does not match our records.");
+          } else {
+            setError(data.message || "Access denied.");
+          }
+        } else {
+          setError(data.message || "Something went wrong.");
+        }
+
+      } else {
+        setError("Network error. Please try again.");
+      }
     }
   }
+
+
 
 
   useEffect(() => {
@@ -101,31 +165,32 @@ const Home = () => {
       {/* Left Floating Admin Icon */}
 
 
-      {/* <div
+
+
+      <div
         style={{
           position: 'fixed',
-          top: '55%',
+          bottom: '120px',
           right: 0,
-          transform: 'translateY(-50%)',
           width: '100px',
-          backgroundColor:'linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%)',
+          background: 'linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%)',
           padding: '12px 0',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '-4px 0 10px rgba(0, 0, 0, 0.1)', // default subtle shadow
+          boxShadow: '-4px 0 10px rgba(0, 0, 0, 0.1)',
           cursor: 'pointer',
           borderTopLeftRadius: '12px',
           borderBottomLeftRadius: '12px',
           zIndex: 999,
         }}
         onClick={() => navigate('/admin-profile')}
-        onMouseEnter={e => {
-          e.currentTarget.style.boxShadow = '-6px 0 20px rgba(0, 0, 0, 0.25)'; // stronger on hover
+        onMouseEnter={(e) => {
+          e.currentTarget.style.boxShadow = '-6px 0 20px rgba(0, 0, 0, 0.25)';
         }}
-        onMouseLeave={e => {
-          e.currentTarget.style.boxShadow = '-4px 0 10px rgba(0, 0, 0, 0.1)'; // back to default
+        onMouseLeave={(e) => {
+          e.currentTarget.style.boxShadow = '-4px 0 10px rgba(0, 0, 0, 0.1)';
         }}
       >
         <FaUserShield size={24} color="#007bff" />
@@ -141,59 +206,17 @@ const Home = () => {
         >
           Admin
         </div>
-      </div> */}
-
-<div
-  style={{
-    position: 'fixed',
-    bottom: '120px', // push it above footer
-    right: 0,
-    width: '100px',
-    background: 'linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%)',
-    padding: '12px 0',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    boxShadow: '-4px 0 10px rgba(0, 0, 0, 0.1)',
-    cursor: 'pointer',
-    borderTopLeftRadius: '12px',
-    borderBottomLeftRadius: '12px',
-    zIndex: 999,
-  }}
-  onClick={() => navigate('/admin-profile')}
-  onMouseEnter={(e) => {
-    e.currentTarget.style.boxShadow = '-6px 0 20px rgba(0, 0, 0, 0.25)';
-  }}
-  onMouseLeave={(e) => {
-    e.currentTarget.style.boxShadow = '-4px 0 10px rgba(0, 0, 0, 0.1)';
-  }}
->
-  <FaUserShield size={24} color="#007bff" />
-  <div
-    style={{
-      paddingTop: '6px',
-      color: '#007bff',
-      fontWeight: '600',
-      fontSize: '14px',
-      textAlign: 'center',
-      whiteSpace: 'nowrap',
-    }}
-  >
-    Admin
-  </div>
-</div>
+      </div>
 
       {/* Content */}
       {isSignedIn === false && (
-<div>
-      <TechHero />
-  <TechTrendsTicker />
+        <div>
+          <TechHero />
+          <TechTrendsTicker />
 
-<Body/>
+          <Body />
 
-      {/* other content */}
-    </div>
+        </div>
 
       )}
 

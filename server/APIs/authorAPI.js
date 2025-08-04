@@ -60,7 +60,7 @@ authorApp.put("/article/:articleId", requireAuth({ signInUrl: "unauthorized" }),
     // console.log(dbRes);
 
 
-    // 🔍 Why Use the Spread Operator Here?
+    //  Why Use the Spread Operator Here?
     // The spread operator is used to copy all the key-value pairs from the modifiedArticle object into a new object.
     //  This new object is then passed as the update.
 

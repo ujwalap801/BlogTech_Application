@@ -82,7 +82,7 @@ const ArticleByID = () => {
 
     if (res.data.message === "comment added") {
       // Show status message
-      setCommentStatus("✅ Comment added!");
+      setCommentStatus("Comment added!");
 
       // Update comments in the UI
       setCurrentArticle(res.data.payload); // updated article with new comment
@@ -152,7 +152,6 @@ const ArticleByID = () => {
               <div className="row align-items-start">
 
                 {/* LEFT: Author Info + Dates */}
-                {/* LEFT: Author Info + Dates */}
                 <div className="col-12 col-md-6 d-flex mb-3 mb-md-0 align-items-center">
                   {state.authorData.profileImageUrl ? (
                     <img
@@ -220,22 +219,7 @@ const ArticleByID = () => {
 
             </div>
 
-            {/* COMMENTS SECTION */}
-            {/* <div className="border rounded p-3 mb-4">
-              <h5 className="mb-3">💬 Comments</h5>
-              {state.comments.length === 0 ? (
-                <p className="text-muted">No comments yet.</p>
-              ) : (
-                <div className="list-group">
-                  {state.comments.map((commentObj) => (
-                    <div key={commentObj._id} className="list-group-item">
-                      <strong>{commentObj?.nameOfUser}</strong>
-                      <p className="mb-1">{commentObj?.comment}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div> */}
+
 
             {/* COMMENTS SECTION */}
             <div className="border rounded p-3 mb-4">

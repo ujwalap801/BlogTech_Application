@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import './Footer.css'; // Optional: for any custom styling
+
 
 const Footer = () => {
   return (

@@ -1,33 +1,5 @@
 const userAuthor = require("../models/userAuthorModel");
 
-
-// async function createUserAuthor(req, res) {
-//   const newUserAuthor = req.body;
-
-//   try {
-//     const userInDB = await userAuthor.findOne({ email: newUserAuthor.email });
-
-//     if (userInDB !== null) {
-     
-//       if (newUserAuthor.role === userInDB.role) {
-//         res.status(200).send({ message: newUserAuthor.role, payload: userInDB });
-//       } else {
-//         res.status(200).send({ message: "invalid role" });
-//       }
-//     } else {
-//       const newUser = new userAuthor(newUserAuthor);
-//       const newUserAuthorDoc = await newUser.save();
-
-//       res.status(201).send({ message: newUserAuthorDoc.role, payload: newUserAuthorDoc });
-//     }
-//   } catch (err) {
-//     console.error("Error in createUserAuthor:", err);
-//     res.status(500).send({ message: "Server error", error: err.message });
-//   }
-// }
-
-
-
 async function createUserAuthor(req, res) {
   const newUserAuthor = req.body;
 
@@ -50,7 +22,7 @@ async function createUserAuthor(req, res) {
           .status(200)
           .send({ message: userInDB.role, payload: userInDB });
       } else {
-        // 🚫 Role mismatch
+        // Role mismatch
         return res.status(403).send({
           message: "RoleMismatch",
           info: "The selected role does not match our records.",

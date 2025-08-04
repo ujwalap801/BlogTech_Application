@@ -71,7 +71,7 @@ const PostArticle = () => {
     else {
       // sET ERROR
     }
-    alert("✅ Article submitted successfully!");
+    alert("Article submitted successfully!");
     reset(); // clear form
   };
 

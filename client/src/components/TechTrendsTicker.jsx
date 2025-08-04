@@ -13,7 +13,6 @@ const trends = [
 ];
 
 const TechTrendsTicker = () => {
-  // Duplicate trends to make it scroll continuously
   const allTrends = [...trends, ...trends];
 
   return (
