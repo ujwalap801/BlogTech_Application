@@ -85,6 +85,9 @@ const Home = () => {
   //   }
   // }
 
+ 
+
+  
   async function handleSubmit(e) {
     e.preventDefault();
     setError('');
@@ -119,30 +122,24 @@ const Home = () => {
         setTimeout(() => {
           navigate(`/${selectedRole}-profile/${updatedUser.role}`);
         }, 1000);
-      } else {
+      }
+      else {
         setError(message);
       }
-
     } catch (err) {
       console.error("Submission error:", err);
+      setError("Server error. Please try again.");
 
-      if (err.response) {
-        const { status, data } = err.response;
 
-        if (status === 403) {
-          if (data.message === "AccountBlocked") {
-            setError(data.blockMessage || "Your account is blocked. Please contact admin.");
-          } else if (data.message === "RoleMismatch") {
-            setError(data.info || "The selected role does not match our records.");
-          } else {
-            setError(data.message || "Access denied.");
-          }
-        } else {
-          setError(data.message || "Something went wrong.");
-        }
-
-      } else {
-        setError("Network error. Please try again.");
+      if (err.response?.status === 403 && err.response.data?.message === "AccountBlocked") {
+        setError(err.response.data.blockMessage || "Your account is blocked. Please contact admin.");
+      }else if(err.response?.status === 403 && err.response.data?.message === "RoleMismatch")
+      {
+         setError(err.info || "The selected role does not match our records.");
+      }
+      
+      else {
+        setError("Server error. Please try again.");
       }
     }
   }
