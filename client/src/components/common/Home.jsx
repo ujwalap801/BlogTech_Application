@@ -109,9 +109,9 @@ const Home = () => {
     try {
       let res;
       if (selectedRole === "author") {
-        res = await axios.post('http://localhost:3000/author-api/author', updatedUser);
+        res = await axios.post('https://blogtech-backend.onrender.com/author-api/author', updatedUser);
       } else {
-        res = await axios.post('http://localhost:3000/user-api/user', updatedUser);
+        res = await axios.post('https://blogtech-backend.onrender.com/user-api/user', updatedUser);
       }
 
       const { message, payload } = res.data;
